@@ -1,8 +1,9 @@
-FROM centos:7
+FROM ubuntu:20.04
 
 LABEL maintainer="developer.palashkosta@gmail.com"
 
-RUN yum install -y python pip python-dev
+RUN apt-get update -y && \
+    apt-get install -y python3-pip python-dev
 
 COPY ./requirements.txt app/requirements.txt
 
@@ -12,7 +13,7 @@ RUN pip install -r requirements.txt
 
 COPY . /app
 
-EXPOSE 5000
+EXPOSE 8080
 
 ENTRYPOINT [ "python3" ]
 
